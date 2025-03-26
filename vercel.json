@@ -4,5 +4,17 @@
             "src": "package.json",
             "use": "@vercel/next"
         }
-    ]
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ],
+    "env": {
+        "OPENAI_API_KEY": "@openai_api_key"
+    },
+    "github": {
+        "silent": true
+    }
 }
