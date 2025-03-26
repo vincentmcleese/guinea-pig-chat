@@ -1,24 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Guinea Pig Chat with Nimbus
+
+A Next.js app that lets you chat with Nimbus, a friendly guinea pig with a love for veggies!
+
+## Features
+
+- 🐹 Chat with Nimbus the guinea pig using OpenAI's GPT model
+- 🥕 Feed Nimbus veggies to keep her happy
+- 🌿 Nimbus's mood and responses change based on her happiness level
+- 🎮 Fun and interactive UI with veggie animations
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.17.0 or later
+- OpenAI API key
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+3. Create a `.env.local` file in the root directory with your OpenAI API key:
+   ```
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
+
+### Running the App
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Chat Interface**: Lets you send messages to Nimbus
+- **Veggie Meter**: Shows Nimbus's happiness level
+  - Feed Nimbus veggies by clicking the "Feed Veggies" button
+  - Happiness decreases over time, so keep feeding!
+- **Nimbus's Responses**:
+  - **Very Happy (80-100%)**: Enthusiastic, playful, lots of "wheeks" and "popcorns"
+  - **Getting Hungry (40-79%)**: Friendlier but hints at wanting more veggies
+  - **Hungry/Grumpy (0-39%)**: Demands food, very irritable!
+
+## Technologies Used
+
+- Next.js 15
+- React 19
+- Tailwind CSS
+- OpenAI API
+- TypeScript
+
+## License
+
+This project is licensed under the MIT License.
 
 ## Learn More
 
