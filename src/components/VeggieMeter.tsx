@@ -81,7 +81,9 @@ export default function VeggieMeter({
 
   return (
     <div className="flex flex-col gap-4 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg w-full max-w-xs">
-      <h2 className="text-lg font-bold text-center">Nimbus's Veggie Meter</h2>
+      <h2 className="text-lg font-bold text-center">
+        Nimbus&apos;s Veggie Meter
+      </h2>
 
       <div className="relative h-6">
         <Progress value={happiness} className={progressClasses} />
