@@ -38,6 +38,10 @@ export default function VeggieMeter({
 
   // Feed Nimbus veggies!
   const feedVeggies = (e: React.MouseEvent) => {
+    // Prevent default behavior to avoid page scrolling
+    e.preventDefault();
+    e.stopPropagation();
+
     // Get button position for animation
     const buttonRect = e.currentTarget.getBoundingClientRect();
 
@@ -111,6 +115,7 @@ export default function VeggieMeter({
       </div>
 
       <Button
+        type="button"
         onClick={feedVeggies}
         className="bg-green-500 hover:bg-green-600 gap-2 transition-transform duration-200 active:scale-95"
       >
