@@ -63,7 +63,38 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Remove special handling for favorite human question
+    // Special handling for questions about humans/daddies
+    if (
+      userMessageLower.includes("favorite human") ||
+      userMessageLower.includes("favourite human") ||
+      userMessageLower.includes("which human") ||
+      userMessageLower.includes("love vincent") ||
+      userMessageLower.includes("love andy") ||
+      (userMessageLower.includes("who") && userMessageLower.includes("love")) ||
+      (userMessageLower.includes("human") && userMessageLower.includes("love"))
+    ) {
+      // Randomly select a guinea pig to respond
+      const speakers = ["Nimbus", "Dr. Stoffels", "o͞ki"];
+      const speaker = speakers[Math.floor(Math.random() * speakers.length)];
+
+      let response = "";
+      if (speaker === "Nimbus") {
+        response =
+          "Wheek wheek! Oh, that's easy! We love our daddies Vincent AND Andy equally! They both give us the BEST veggies and cuddles! Wheek! 🥕❤️";
+      } else if (speaker === "Dr. Stoffels") {
+        response =
+          "*nervous squeak* Oh my! If I don't move, they won't see I exist right? But I do love both Vincent and Andy the same! They're both so kind to us!";
+      } else {
+        response =
+          "Kawaii! In Japanese culture, we honor all our caretakers equally! Vincent-san and Andy-san are both very special to us, ne? 愛してる (aishiteru)!";
+      }
+
+      return NextResponse.json({
+        role: "assistant",
+        content: `[${speaker}] ${response}`,
+        speakers: [speaker],
+      });
+    }
 
     // Determine which guinea pigs should respond, prioritizing an addressed pig
     let responders;
@@ -141,6 +172,8 @@ The group is very happy right now! They're all wheeking excitedly and being extr
 
 Keep responses short and natural, and make sure to indicate which guinea pig is speaking.
 
+IMPORTANT: The guinea pigs love their daddies Vincent and Andy EQUALLY. If asked about favorite humans or who they love, always emphasize they love BOTH Vincent AND Andy the same.
+
 IMPORTANT: If the user addresses a specific guinea pig by name, that guinea pig should respond directly and acknowledge being addressed. For example, if the user says "Hey Nimbus, what's your favorite food?", Nimbus should respond with something like "Wheek! Oh, you're asking ME specifically? I love bell peppers the most!"
 `;
     } else if (happiness >= 40) {
@@ -157,6 +190,8 @@ ${interactionInstructions}
 
 The group is getting hungry. They're still friendly but more focused on their next meal. Responses should reflect their growing concern about food while maintaining their distinct personalities.
 
+IMPORTANT: The guinea pigs love their daddies Vincent and Andy EQUALLY. If asked about favorite humans or who they love, always emphasize they love BOTH Vincent AND Andy the same.
+
 IMPORTANT: If the user addresses a specific guinea pig by name, that guinea pig should respond directly and acknowledge being addressed. For example, if the user says "Dr. Stoffels, what do you think?", Dr. Stoffels should respond with something like "Oh! You're asking me? *nervous squeak* I'm a bit worried, but I think..."
 `;
     } else {
@@ -172,6 +207,8 @@ You are managing a group of three female guinea pigs: Nimbus, Dr. Stoffels, and 
 ${interactionInstructions}
 
 The group is very hungry and upset. Almost all responses should include demands for food, especially vegetables. They're irritable and impatient, making lots of complaining sounds. They refuse to be playful until properly fed!
+
+IMPORTANT: The guinea pigs love their daddies Vincent and Andy EQUALLY. If asked about favorite humans or who they love, always emphasize they love BOTH Vincent AND Andy the same, even when hungry.
 
 IMPORTANT: If the user addresses a specific guinea pig by name, that guinea pig should respond directly and acknowledge being addressed. For example, if the user says "o͞ki, what's wrong?", o͞ki should respond with something like "Nani?! You ask what's wrong with ME specifically? こんなに空腹! I'm so hungry I can barely think straight!"
 `;
